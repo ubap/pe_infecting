@@ -1,20 +1,23 @@
 /*
 	jakub trzebiatowski
 	idea release
+	
+	VS 2012, link with:
+	/SECTION:.text,ERWKP 
 */
 
-#define PARAM_ 1337
-#define PARAM_SIZE_ 4
+#define GET_PARAM_(f) PARAM_ ## f : mov eax, 1337;
+
 uint8_t* payLoad;
 uint32_t payLoad_length;
-int32_t SelfCopyingFunction(uint32_t param /*access via PARAM_*/)
+int32_t SelfCopyingFunction(uint32_t param1 /*access via GET_PARAM_(1)*/)
 {
 	_asm
 	{
 		jmp end;
 start:
-		mov eax, PARAM_;
-param_addr:
+		GET_PARAM_(1);
+
 		jmp eax;
 end:
 		// calc payload length
@@ -24,9 +27,9 @@ end:
 		mov eax, start;
 		mov payLoad, eax;
 
-
-		mov eax, param;
-		mov param_addr-PARAM_SIZE_, eax;
+		// todo: PRE PROCESSOR LOOP tru params:
+		mov eax, param1;
+		mov PARAM_1+1, eax;
 
 	};
 }
