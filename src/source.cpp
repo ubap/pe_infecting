@@ -2,9 +2,6 @@
 	jakub trzebiatowski
 	vs 2012, link with: 
 	/SECTION:.text,ERWKP 
-
-	ps.
-	https://www.youtube.com/watch?v=_GZB_nP4uWE
 */
 
 #include <stdint.h>
